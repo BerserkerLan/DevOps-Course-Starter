@@ -25,7 +25,7 @@ def submitNewItem():
         'key': secrets.KEY,
         'token': secrets.TOKEN,
         'idList': list_id,
-        "name": str(item_name)
+        "name": item_name
     }
     Requests.request(
         "POST",
