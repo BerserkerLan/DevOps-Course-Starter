@@ -11,7 +11,7 @@ app.config.from_object('flask_config.Config')
 def index():
     item_list = []
     list_id = '5f56323626c33d81cd98b386'
-    r = Requests.get('https://api.trello.com/1/lists/{}/cards?key={}&token={}'.format(list_id, secrets.KEY, secrets.TOKEN))
+    r = Requests.get(f'https://api.trello.com/1/lists/{list_id}/cards?key={secrets.KEY}&token={secrets.TOKEN}')
     for items in (r.json()):
         item_list.append( Item(items['id'], 'To Do', items['name']) )
     return render_template("index.html", items=item_list)
