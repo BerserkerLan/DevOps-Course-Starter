@@ -19,7 +19,6 @@ def index():
 @app.route('/newItem', methods=['POST'])
 def submitNewItem():
     item_name = request.form.get('itemName')
-    item_list = []
     list_id = '5f56323626c33d81cd98b386'
     url = f"https://api.trello.com/1/cards"
     query = {
@@ -28,27 +27,20 @@ def submitNewItem():
         'idList': list_id,
         "name": str(item_name)
     }
-    response = Requests.request(
+    Requests.request(
         "POST",
         url,
         params=query
     )
-    r = Requests.get('https://api.trello.com/1/lists/{}/cards?key={}&token={}'.format(list_id, secrets.KEY, secrets.TOKEN))
-    for item in (r.json()):
-        item_list.append( Item(item['id'], 'To Do', item['name']) )
-    return render_template("index.html", items=item_list)
+    return redirect('/')
 
 @app.route('/markAsComplete/<item_id>')
 def markAsComplete(item_id):
     item_key = item_id
-    item_list = []
     list_to_move_to = '5f56324465484e35d83eb45b'
     list_id = '5f56323626c33d81cd98b386'
-    url = Requests.put('https://api.trello.com/1/cards/{}?key={}&token={}&idList={}'.format(item_key, secrets.KEY, secrets.TOKEN, list_to_move_to))
-    r = Requests.get('https://api.trello.com/1/lists/{}/cards?key={}&token={}'.format(list_id, secrets.KEY, secrets.TOKEN))
-    for item in (r.json()):
-        item_list.append( Item(item['id'], 'To Do', item['name']) )
-    return render_template("index.html", items=item_list)    
+    Requests.put('https://api.trello.com/1/cards/{}?key={}&token={}&idList={}'.format(item_key, secrets.KEY, secrets.TOKEN, list_to_move_to))
+    return redirect('/') 
 
 if __name__ == '__main__':
     app.run()
