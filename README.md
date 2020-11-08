@@ -2,7 +2,7 @@
 
 ## Getting started
 
-The project uses a virtual environment to isolate package dependencies. To create the virtual environment and install required packages, run the following from a bash shell terminal:
+The project uses a virtual environment to isolate package dependencies. To run, you must ensure you have environment variables for 'KEY' and 'TOKEN' which are the key and token respectively for querying the flask API. To create the virtual environment and install required packages, run the following from a bash shell terminal:
 
 ### On macOS and Linux
 ```bash
