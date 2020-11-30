@@ -11,13 +11,13 @@
     <div class="col-md-12">
       <h2>Items</h2>
       <ul class="list-group mb-4">
-        {% for item in items%} 
-          <li>{{item}}</li> 
+        {% for item in items%}  
+            <li id="itemName" name="something">{{item.title}}</li>
+            <button type="submit" value="DoIt" style="width: fit-content;"><a href="{{ url_for('markAsComplete', item_id=item.id) }}">Set as Complete</a></button>
         {%endfor%} 
       </ul>
       <form action="/newItem" method="POST">
-        <input type="text" id="itemName" name="itemName" required
-        minlength="4" maxlength="8" size="10">
+        <input type="text" id="itemName" name="itemName" size="10">
           <button class="favorite styled" onclick=""
             type="submit">
               Add to favorites
