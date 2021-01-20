@@ -4,23 +4,19 @@
 
 The project uses a virtual environment to isolate package dependencies. To run, you must ensure you have environment variables for 'KEY' and 'TOKEN' which are the key and token respectively for querying the flask API. To create the virtual environment and install required packages, run the following from a bash shell terminal:
 
-### On macOS and Linux
-```bash
-$ source setup.sh
-```
-### On Windows (Using PowerShell)
-```powershell
-$ .\setup.ps1
-```
-### On Windows (Using Git Bash)
-```bash
-$ source setup.sh --windows
-```
+### Running the Application
 
-Once the setup script has completed and all packages have been installed, start the Flask app by running:
+To run this application, you must have poetry installed.
+
+After that, simply call
 ```bash
-$ flask run
+poetry install
 ```
+to install all dependencies. Then you can call
+```bash
+flash run
+```
+ to run the application.
 
 You should see output similar to the following:
 ```bash
