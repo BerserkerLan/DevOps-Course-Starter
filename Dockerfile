@@ -16,5 +16,11 @@ RUN pip3 install gunicorn
 
 RUN pip3 install requests
 
+FROM base as production
+ENV FLASK_ENV=production
 ENTRYPOINT ["gunicorn", "app:app"]
 CMD ["--config gunicorn.conf.py"]
+
+FROM base as development
+RUN poetry install
+ENTRYPOINT [ "poetry", "run", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
