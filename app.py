@@ -12,8 +12,7 @@ def index():
     item_list = []
     list_id = '5f56323626c33d81cd98b386'
     url = f'https://api.trello.com/1/lists/{list_id}/cards?key={os.getenv("KEY")}&token={os.getenv("TOKEN")}'
-    print("Trying url: {}", url)
-    r = Requests.get(f'https://api.trello.com/1/lists/{list_id}/cards?key={os.getenv("KEY")}&token={os.getenv("TOKEN")}')
+    r = Requests.get(url)
     for items in (r.json()):
         item_list.append( Item(items['id'], 'To Do', items['name']) )
     return render_template("index.html", items=item_list)
