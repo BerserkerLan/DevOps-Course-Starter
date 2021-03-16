@@ -14,7 +14,11 @@ poetry install
 ```
 to install all dependencies. Then you can call
 ```bash
+<<<<<<< HEAD
 flask run
+=======
+poetry run flask run
+>>>>>>> 2c9172557250c62664a64dd2125dbe94aa2d1d4c
 ```
  to run the application.
 
