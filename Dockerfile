@@ -8,13 +8,7 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 
 COPY . .
 
-RUN pip3 install flask
-
 RUN source $HOME/.poetry/env && poetry update && poetry install
-
-RUN pip3 install gunicorn
-
-RUN pip3 install requests
 
 FROM base as production
 ENV FLASK_ENV=production
@@ -22,5 +16,7 @@ ENTRYPOINT ["gunicorn", "app:app"]
 CMD ["--config gunicorn.conf.py"]
 
 FROM base as development
+
 RUN poetry install
+RUN poetry config virtualenvs.create false --local
 ENTRYPOINT [ "poetry", "run", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
