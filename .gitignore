@@ -6,6 +6,9 @@ instance/*
 !instance/.gitignore
 .webassets-cache
 
+.vagrant
+.venv/
+
 ### Flask.Python Stack ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -114,5 +117,3 @@ env/
 
 ### Configuration files ###
 .env
-
-secrets.py
