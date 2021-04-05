@@ -1,4 +1,4 @@
-FROM 3.9.3-alpine:3.11 as base
+FROM alpine:3.11 as base
 
 RUN apk add curl
 
@@ -17,6 +17,6 @@ CMD ["--config gunicorn.conf.py"]
 
 FROM base as development
 
-RUN poetry install
-RUN poetry config virtualenvs.create false --local
+RUN source $HOME/.poetry/env && poetry install
+RUN source $HOME/.poetry/env && poetry config virtualenvs.create false --local
 ENTRYPOINT [ "poetry", "run", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
