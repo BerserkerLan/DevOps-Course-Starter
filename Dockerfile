@@ -1,4 +1,4 @@
-FROM alpine:3.11 as base
+FROM 3.9.3-alpine:3.11 as base
 
 RUN apk add curl
 

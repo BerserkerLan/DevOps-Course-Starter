@@ -14,7 +14,7 @@ poetry install
 ```
 to install all dependencies. Then you can call
 ```bash
-flash run
+flask run
 ```
  to run the application.
 
