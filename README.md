@@ -14,9 +14,14 @@ poetry install
 ```
 to install all dependencies. Then you can call
 ```bash
-flask run
+poetry run flask run
 ```
  to run the application.
+
+ ## Running with Vagrant
+
+ To run this application with vagrant instead, simple call
+ ``` vagrant up```
 
 You should see output similar to the following:
 ```bash
