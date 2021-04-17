@@ -1,3 +1,2 @@
 script:
-- docker build . -t travis/image:1.0
-- docker run --entrypoint "pytest" travis/image:1.0
+- echo "Hello World hahaha"
