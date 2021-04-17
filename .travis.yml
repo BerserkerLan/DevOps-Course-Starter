@@ -1,4 +1,2 @@
 script:
 - docker build . -t travis/image:1.0
-- docker run travis/image:1.0 test
-- docker run travis/image:1.0 integration_tests
