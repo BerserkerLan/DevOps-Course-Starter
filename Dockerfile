@@ -1,14 +1,15 @@
-FROM alpine:3.11 as base
+FROM python:3.9-alpine as base
 
 RUN apk add curl
 
-RUN apk add python3
+ENV POETRY_HOME=/poetry
+ENV PATH=${POETRY_HOME}/bin:${PATH}
 
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 
 COPY . .
 
-RUN source $HOME/.poetry/env && poetry update && poetry install
+RUN poetry update && poetry install
 
 FROM base as production
 ENV FLASK_ENV=production
@@ -17,6 +18,5 @@ CMD ["--config gunicorn.conf.py"]
 
 FROM base as development
 
-RUN source $HOME/.poetry/env && poetry install
-RUN source $HOME/.poetry/env && poetry config virtualenvs.create false --local
+RUN poetry config virtualenvs.create false --local && poetry install
 ENTRYPOINT [ "poetry", "run", "flask", "run", "-h", "0.0.0.0", "-p", "5000" ]
