@@ -1,2 +1,4 @@
 script:
-- docker build . -t travis/image:1.0
+  - docker login --username devopscorndel --password $dockerhubpass
+  - docker build --target production --tag travis/image:latest .
+  - docker push travis/image:latest
