@@ -2,7 +2,7 @@ script:
 - docker login --username devopscorndel --password $dockerhubpass
 - docker build --target production --tag devopscorndel/travisimage:latest .
 - docker push devopscorndel/travisimage:latest
-- docker login --username=rusab36@gmail.com --password $dockerhubpass registry.heroku.com
+- docker login --username=_ --password $herokutoken registry.heroku.com
 - docker pull devopscorndel/travisimage:latest
 - docker tag devopscorndel/travisimage:latest registry.heroku.com/devops-workshhop7/web
 - docker push registry.heroku.com/devops-workshhop7/web
