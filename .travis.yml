@@ -1,11 +1,12 @@
 script:
 - docker login --username devopscorndel --password $dockerhubpass
-- docker build --target production --tag travis/image:latest .
-- docker push travis/image:latest
+- docker build --target production --tag travisimage:latest .
+- docker push devopscorndel/travisimage:latest
+
 - docker login --username=rusab36@gmail.com --password $herokupass registry.heroku.com
-- docker pull devopscorndel/travis/image:latest
-- docker tag devopscorndel/travis/image:latest registry.heroku.com/devops-workshop7/web
+- docker pull devopscorndel/travisimage:latest
+- docker tag devopscorndel/travisimage:latest registry.heroku.com/devops-workshop7/web
 - docker push registry.heroku.com/devops-workshop7/web
-- heroku container:release web -a travis/image:latest
+- heroku container:release web -a travisimage:latest
 env,global:
   secure: fHPZ94SeiGjWIHas170ZokXgdcvbkcQQsVhYcgQzuCBbgRc/P9j7V+TpeMkkD97hYHefOg4i7aUntPBqLassbfzFyDKSv4BU+UcFc5vshCUm10+4ODPkI3mwWYdqoDNPIjFJiJsRNIfeIVvZYiHcO9wm/XJLc/utzi6uo8mpQK0ofcXv7IklKB+Ca6zk1gEp98g+NIbzw0wqtUFxvtTZaSW5NggyLHxR1bQ7xYwGjQCmjZxeDrkJ+PWVf6DYEb9dGZeiHaTuZtKZb3FHdpxvnlHW1mUEk0z8zuJFxc71Eu8s11PUPlNnsjkRqwte60s6vQR8yOVvq52x34NNbITOdHYd9bIUE7RmtohVNz9zswqd/6UZYq5NTzSvaupe9FGxfFBMiZTKXx8BGXGPp9JSVeJqOWCwnqmXqjB0rlt6m7S8yZXni15jOw+VYp3Y6IttHJ3Bev6LC8wBaWCrWRYQYiFz5ob8LN1K37EL3nQ5/GwPn2Fx6ANnndpZfYopIy4baSeBkRQ9ni6R1dg2CwMzOkaaKED1cx2EmYDWLsp9+AykUX+5ivyyuF/ISGPVOb0qjH7Kr9Wi3IEXVXZ2c48e6D1k0GMbvUsQdPyYNALmIHPFmZmEKWtn12HjMrSIEJV20p2oNhMSIVWuDG7LzUFXbtlLJ9C6TY5ypVX1sRMZvMA=
