@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for
-import session_items as session
 import requests as Requests
 from Item import Item
 import os
@@ -10,7 +9,8 @@ app = Flask(__name__)
 def index():
     item_list = []
     list_id = '5f56323626c33d81cd98b386'
-    r = Requests.get(f'https://api.trello.com/1/lists/{list_id}/cards?key={os.getenv("KEY")}&token={os.getenv("TOKEN")}')
+    url = f'https://api.trello.com/1/lists/{list_id}/cards?key={os.getenv("KEY")}&token={os.getenv("TOKEN")}'
+    r = Requests.get(url)
     for items in (r.json()):
         item_list.append( Item(items['id'], 'To Do', items['name']) )
     return render_template("index.html", items=item_list)
